@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quote
+{% endblock %}
+
+{% block main %}
+
+    <form action="/quote" method="post">
+        <div class="form-group">
+            <input autocomplete="off" autofocus="" class="form-control" name="symbol" placeholder="Symbol" type="text">
+        </div>
+        <button class="btn btn-primary" type="submit">Quote</button>
+    </form>
+    <div>
+        <hr>
+    </div>
+
+    <table class="table table-striped">
+        <thead>
+            <th>Symbol</th>
+            <th>Name</th>
+            <th>Price</th>
+        </thead>
+        <tbody>
+            {% for s in stocks %}
+            <tr>
+                    <td>{{stocks[s].quote.symbol}}</td>
+                    <td>{{stocks[s].quote.companyName}}</td>
+                    <td>{{stocks[s].quote.latestPrice | usd}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
